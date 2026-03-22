@@ -22,13 +22,13 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? 'py-3' : 'py-5'
+        scrolled ? 'py-2' : 'py-4'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <nav
-          className={`flex items-center justify-between rounded-2xl px-6 py-3 transition-all duration-500 ${
-            scrolled ? 'glass shadow-lg' : ''
+          className={`flex items-center justify-between rounded-2xl px-5 sm:px-6 py-3 transition-all duration-500 bg-bg/90 backdrop-blur-xl border border-white/[0.06] ${
+            scrolled ? 'shadow-lg shadow-black/30' : ''
           }`}
         >
           {/* Logo */}
