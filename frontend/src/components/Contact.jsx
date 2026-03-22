@@ -34,10 +34,10 @@ const Contact = () => {
           viewport={{ once: true }}
         >
           <span className="section-label">Contact</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mt-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-2" style={{ color: 'var(--text)' }}>
             Let's Work <span className="text-gradient">Together</span>
           </h2>
-          <p className="text-slate-500 text-lg mt-6 leading-relaxed">
+          <p className="text-lg mt-6 leading-relaxed" style={{ color: 'var(--text-faint)' }}>
             Have a project in mind? Let's discuss and make it happen.
           </p>
         </motion.div>
@@ -55,14 +55,14 @@ const Contact = () => {
             <a
               key={item.label}
               href={item.href}
-              className="flex items-center gap-4 glass rounded-xl p-5 hover:bg-white/[0.06] transition-all group"
+              className="flex items-center gap-4 glass rounded-xl p-5 transition-all group"
             >
               <div className="p-3 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white transition-all">
                 {item.icon}
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">{item.label}</p>
-                <p className="text-sm font-semibold text-white">{item.value}</p>
+                <p className="text-xs font-bold uppercase tracking-wider" style={{ color: 'var(--text-faint)' }}>{item.label}</p>
+                <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{item.value}</p>
               </div>
             </a>
           ))}
@@ -78,37 +78,40 @@ const Contact = () => {
           <form onSubmit={handleSubmit} className="glass rounded-2xl p-6 sm:p-10 space-y-6">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Name</label>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--text-faint)' }}>Name</label>
                 <input
                   required
                   type="text"
                   placeholder="John Doe"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
+                  className="w-full rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                  style={{ background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
                 />
               </div>
               <div>
-                <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Email</label>
+                <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--text-faint)' }}>Email</label>
                 <input
                   required
                   type="email"
                   placeholder="john@example.com"
                   value={form.email}
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all"
+                  className="w-full rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                  style={{ background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
                 />
               </div>
             </div>
             <div>
-              <label className="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">Message</label>
+              <label className="block text-xs font-bold uppercase tracking-wider mb-2" style={{ color: 'var(--text-faint)' }}>Message</label>
               <textarea
                 required
                 placeholder="Tell me about your project..."
                 rows={5}
                 value={form.message}
                 onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3.5 text-white text-sm placeholder-slate-600 focus:outline-none focus:border-primary/50 focus:ring-1 focus:ring-primary/20 transition-all resize-none"
+                className="w-full rounded-xl px-4 py-3.5 text-sm focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none"
+                style={{ background: 'var(--input-bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
               />
             </div>
             <button

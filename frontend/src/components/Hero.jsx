@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Terminal, Braces, Code2 } from 'lucide-react';
+import { ArrowRight, Terminal, Braces } from 'lucide-react';
 
 const Hero = () => {
   const titles = ['Full Stack Developer', 'Java & Spring Boot', 'React & Vite', 'Cloud Enthusiast'];
@@ -18,7 +18,7 @@ const Hero = () => {
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
 
       {/* Dot Grid */}
-      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
+      <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, currentColor 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
       <div className="max-w-6xl mx-auto px-6 w-full py-32 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
@@ -38,7 +38,7 @@ const Hero = () => {
             </div>
 
             <div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ color: 'var(--text)' }}>
                 Hey, I'm{' '}
                 <span className="text-gradient">Vignesh</span>
               </h1>
@@ -49,7 +49,8 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: index === i ? 1 : 0, y: index === i ? 0 : -20 }}
                     transition={{ duration: 0.4 }}
-                    className={`text-xl sm:text-2xl font-semibold text-slate-400 absolute ${index !== i ? 'pointer-events-none' : ''}`}
+                    className={`text-xl sm:text-2xl font-semibold absolute ${index !== i ? 'pointer-events-none' : ''}`}
+                    style={{ color: 'var(--text-muted)' }}
                   >
                     {title}
                   </motion.p>
@@ -57,7 +58,7 @@ const Hero = () => {
               </div>
             </div>
 
-            <p className="text-lg text-slate-500 leading-relaxed max-w-lg">
+            <p className="text-lg leading-relaxed max-w-lg" style={{ color: 'var(--text-faint)' }}>
               I craft performant, accessible, and beautifully designed web applications. 
               Passionate about clean code, great UX, and turning ideas into reality.
             </p>
@@ -72,21 +73,21 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="flex gap-10 pt-8 border-t border-white/5">
+            <div className="flex gap-10 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
               {[
                 { value: '10+', label: 'Projects' },
                 { value: '5+', label: 'Tech Stack' },
                 { value: '100%', label: 'Dedication' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-extrabold text-white">{stat.value}</div>
-                  <div className="text-xs font-semibold text-slate-500 uppercase tracking-wider mt-1">{stat.label}</div>
+                  <div className="text-2xl font-extrabold" style={{ color: 'var(--text)' }}>{stat.value}</div>
+                  <div className="text-xs font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--text-faint)' }}>{stat.label}</div>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          {/* Right - Code Terminal Visual */}
+          {/* Right - Code Terminal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -94,18 +95,16 @@ const Hero = () => {
             className="hidden lg:flex justify-center"
           >
             <div className="relative w-full max-w-md">
-              {/* Terminal Window */}
-              <div className="glass rounded-2xl overflow-hidden shadow-2xl shadow-primary/5">
+              <div className="glass rounded-2xl overflow-hidden" style={{ boxShadow: '0 25px 50px var(--shadow)' }}>
                 {/* Title Bar */}
-                <div className="flex items-center gap-2 px-5 py-3 border-b border-white/5">
+                <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  <span className="ml-3 text-xs text-slate-500 font-mono">vignesh@portfolio ~</span>
+                  <span className="ml-3 text-xs font-mono" style={{ color: 'var(--text-faint)' }}>vignesh@portfolio ~</span>
                 </div>
-                {/* Code Content */}
-                <div className="p-6 font-mono text-sm leading-relaxed">
-                  <p className="text-slate-500">// about me</p>
+                <div className="p-6 font-mono text-sm leading-relaxed" style={{ color: 'var(--text-faint)' }}>
+                  <p>// about me</p>
                   <p><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = {'{'}</p>
                   <p className="pl-4"><span className="text-green-400">name</span>: <span className="text-orange-300">"Vignesh"</span>,</p>
                   <p className="pl-4"><span className="text-green-400">role</span>: <span className="text-orange-300">"Full Stack Dev"</span>,</p>
@@ -113,40 +112,27 @@ const Hero = () => {
                   <p className="pl-4"><span className="text-green-400">passion</span>: <span className="text-orange-300">"Building cool stuff"</span>,</p>
                   <p className="pl-4"><span className="text-green-400">available</span>: <span className="text-blue-400">true</span>,</p>
                   <p>{'}'}</p>
-                  <p className="mt-3 text-slate-500">
-                    <span className="text-slate-400">▌</span>
-                  </p>
+                  <p className="mt-3" style={{ color: 'var(--text-muted)' }}>▌</p>
                 </div>
               </div>
 
-              {/* Floating Badge */}
-              <motion.div
-                animate={{ y: [0, -10, 0] }}
-                transition={{ repeat: Infinity, duration: 3 }}
-                className="absolute -top-4 -right-4 glass px-4 py-3 rounded-2xl shadow-xl"
-              >
+              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="absolute -top-4 -right-4 glass px-4 py-3 rounded-2xl" style={{ boxShadow: '0 8px 30px var(--shadow)' }}>
                 <div className="flex items-center gap-2">
                   <Terminal size={16} className="text-primary" />
-                  <span className="text-sm font-bold text-white">Clean Code</span>
+                  <span className="text-sm font-bold" style={{ color: 'var(--text)' }}>Clean Code</span>
                 </div>
               </motion.div>
 
-              {/* Floating Badge 2 */}
-              <motion.div
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 4, delay: 1 }}
-                className="absolute -bottom-4 -left-4 glass px-5 py-3 rounded-2xl shadow-xl"
-              >
+              <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 4, delay: 1 }} className="absolute -bottom-4 -left-4 glass px-5 py-3 rounded-2xl" style={{ boxShadow: '0 8px 30px var(--shadow)' }}>
                 <div className="flex items-center gap-3">
                   <Braces size={18} className="text-accent" />
                   <div>
                     <p className="text-xs font-bold text-primary uppercase tracking-wider">Stack</p>
-                    <p className="text-sm font-semibold text-white">React + Spring Boot</p>
+                    <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>React + Spring Boot</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Decorative Border */}
               <div className="absolute -z-10 top-6 left-6 w-full h-full rounded-2xl border-2 border-primary/20" />
             </div>
           </motion.div>
