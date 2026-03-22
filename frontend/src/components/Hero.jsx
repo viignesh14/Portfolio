@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Download } from 'lucide-react';
+import { ArrowRight, Terminal, Braces, Code2 } from 'lucide-react';
 
 const Hero = () => {
   const titles = ['Full Stack Developer', 'Java & Spring Boot', 'React & Vite', 'Cloud Enthusiast'];
@@ -17,7 +17,7 @@ const Hero = () => {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-accent/10 rounded-full blur-[100px] pointer-events-none" />
 
-      {/* Dot Grid Background */}
+      {/* Dot Grid */}
       <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(circle, #fff 1px, transparent 1px)', backgroundSize: '24px 24px' }} />
 
       <div className="max-w-6xl mx-auto px-6 w-full py-32 relative z-10">
@@ -29,7 +29,6 @@ const Hero = () => {
             transition={{ duration: 0.8 }}
             className="space-y-8"
           >
-            {/* Status Badge */}
             <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full glass text-sm font-semibold text-primary">
               <span className="relative flex h-2.5 w-2.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -38,23 +37,17 @@ const Hero = () => {
               Available for opportunities
             </div>
 
-            {/* Heading */}
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
                 Hey, I'm{' '}
                 <span className="text-gradient">Vignesh</span>
               </h1>
-
-              {/* Rotating Title */}
-              <div className="mt-4 h-10 overflow-hidden">
+              <div className="mt-4 h-10 overflow-hidden relative">
                 {titles.map((title, i) => (
                   <motion.p
                     key={title}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={{
-                      opacity: index === i ? 1 : 0,
-                      y: index === i ? 0 : -20,
-                    }}
+                    animate={{ opacity: index === i ? 1 : 0, y: index === i ? 0 : -20 }}
                     transition={{ duration: 0.4 }}
                     className={`text-xl sm:text-2xl font-semibold text-slate-400 absolute ${index !== i ? 'pointer-events-none' : ''}`}
                   >
@@ -64,13 +57,11 @@ const Hero = () => {
               </div>
             </div>
 
-            {/* Description */}
             <p className="text-lg text-slate-500 leading-relaxed max-w-lg">
               I craft performant, accessible, and beautifully designed web applications. 
               Passionate about clean code, great UX, and turning ideas into reality.
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
               <a href="#projects" className="btn-primary group">
                 View My Work
@@ -81,7 +72,6 @@ const Hero = () => {
               </a>
             </div>
 
-            {/* Stats Row */}
             <div className="flex gap-10 pt-8 border-t border-white/5">
               {[
                 { value: '5+', label: 'Years Exp.' },
@@ -96,21 +86,37 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right - Profile Image / Visual */}
+          {/* Right - Code Terminal Visual */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="hidden lg:flex justify-center"
           >
-            <div className="relative">
-              {/* Main Image Container */}
-              <div className="w-80 h-80 rounded-3xl glass p-2 shadow-2xl shadow-primary/10">
-                <img
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800"
-                  alt="Vignesh"
-                  className="w-full h-full object-cover rounded-2xl"
-                />
+            <div className="relative w-full max-w-md">
+              {/* Terminal Window */}
+              <div className="glass rounded-2xl overflow-hidden shadow-2xl shadow-primary/5">
+                {/* Title Bar */}
+                <div className="flex items-center gap-2 px-5 py-3 border-b border-white/5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
+                  <span className="ml-3 text-xs text-slate-500 font-mono">vignesh@portfolio ~</span>
+                </div>
+                {/* Code Content */}
+                <div className="p-6 font-mono text-sm leading-relaxed">
+                  <p className="text-slate-500">// about me</p>
+                  <p><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = {'{'}</p>
+                  <p className="pl-4"><span className="text-green-400">name</span>: <span className="text-orange-300">"Vignesh"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">role</span>: <span className="text-orange-300">"Full Stack Dev"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">stack</span>: [<span className="text-orange-300">"React"</span>, <span className="text-orange-300">"Spring Boot"</span>],</p>
+                  <p className="pl-4"><span className="text-green-400">passion</span>: <span className="text-orange-300">"Building cool stuff"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">available</span>: <span className="text-blue-400">true</span>,</p>
+                  <p>{'}'}</p>
+                  <p className="mt-3 text-slate-500">
+                    <span className="text-slate-400">▌</span>
+                  </p>
+                </div>
               </div>
 
               {/* Floating Badge */}
@@ -120,28 +126,28 @@ const Hero = () => {
                 className="absolute -top-4 -right-4 glass px-4 py-3 rounded-2xl shadow-xl"
               >
                 <div className="flex items-center gap-2">
-                  <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse" />
-                  <span className="text-sm font-bold text-white">Open to Work</span>
+                  <Terminal size={16} className="text-primary" />
+                  <span className="text-sm font-bold text-white">Clean Code</span>
                 </div>
               </motion.div>
 
-              {/* Tech Stack Badge */}
+              {/* Floating Badge 2 */}
               <motion.div
                 animate={{ y: [0, 8, 0] }}
                 transition={{ repeat: Infinity, duration: 4, delay: 1 }}
                 className="absolute -bottom-4 -left-4 glass px-5 py-3 rounded-2xl shadow-xl"
               >
                 <div className="flex items-center gap-3">
-                  <span className="text-2xl">⚡</span>
+                  <Braces size={18} className="text-accent" />
                   <div>
-                    <p className="text-xs font-bold text-primary uppercase tracking-wider">Preferred Stack</p>
+                    <p className="text-xs font-bold text-primary uppercase tracking-wider">Stack</p>
                     <p className="text-sm font-semibold text-white">React + Spring Boot</p>
                   </div>
                 </div>
               </motion.div>
 
-              {/* Decorative */}
-              <div className="absolute -z-10 top-8 left-8 w-full h-full rounded-3xl border-2 border-primary/20" />
+              {/* Decorative Border */}
+              <div className="absolute -z-10 top-6 left-6 w-full h-full rounded-2xl border-2 border-primary/20" />
             </div>
           </motion.div>
         </div>

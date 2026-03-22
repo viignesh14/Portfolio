@@ -1,13 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ArrowUpRight } from 'lucide-react';
+import { Github, ArrowUpRight, Code2, Database, Globe, Cpu } from 'lucide-react';
 
 const projects = [
   {
     title: 'E-Commerce Platform',
     desc: 'A modern shopping platform with Stripe payments, real-time inventory, and admin dashboard.',
     tech: ['React', 'Spring Boot', 'MySQL', 'Stripe'],
-    image: 'https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800',
+    icon: <Globe size={28} />,
+    gradient: 'from-blue-500/20 to-cyan-500/10',
     github: '#',
     live: '#',
   },
@@ -15,7 +16,8 @@ const projects = [
     title: 'SaaS Analytics Dashboard',
     desc: 'Real-time data visualization with interactive charts, user tracking, and report generation.',
     tech: ['Next.js', 'PostgreSQL', 'Chart.js', 'Tailwind'],
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800',
+    icon: <Cpu size={28} />,
+    gradient: 'from-purple-500/20 to-pink-500/10',
     github: '#',
     live: '#',
   },
@@ -23,7 +25,8 @@ const projects = [
     title: 'AI Chat Application',
     desc: 'Real-time chat app with integrated AI assistant, powered by OpenAI API and WebSockets.',
     tech: ['React', 'Node.js', 'Socket.io', 'OpenAI'],
-    image: 'https://images.unsplash.com/photo-1677442135136-760c813a743d?auto=format&fit=crop&q=80&w=800',
+    icon: <Code2 size={28} />,
+    gradient: 'from-green-500/20 to-emerald-500/10',
     github: '#',
     live: '#',
   },
@@ -31,7 +34,8 @@ const projects = [
     title: 'Travel Booking System',
     desc: 'Full-featured travel booking with flight search, hotel management, and payment processing.',
     tech: ['React', 'Spring Boot', 'PostgreSQL', 'AWS'],
-    image: 'https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&q=80&w=800',
+    icon: <Database size={28} />,
+    gradient: 'from-orange-500/20 to-yellow-500/10',
     github: '#',
     live: '#',
   },
@@ -40,7 +44,6 @@ const projects = [
 const Projects = () => {
   return (
     <section id="projects" className="py-32 px-6 max-w-6xl mx-auto">
-      {/* Header */}
       <div className="text-center max-w-2xl mx-auto mb-20">
         <motion.div
           initial={{ opacity: 0, y: 15 }}
@@ -57,8 +60,7 @@ const Projects = () => {
         </motion.div>
       </div>
 
-      {/* Project Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, i) => (
           <motion.div
             key={project.title}
@@ -68,17 +70,15 @@ const Projects = () => {
             viewport={{ once: true }}
             className="group glass rounded-2xl overflow-hidden hover:border-primary/30 transition-all duration-500"
           >
-            {/* Image */}
-            <div className="aspect-video overflow-hidden relative">
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-bg via-bg/30 to-transparent" />
+            {/* Gradient Header with Icon */}
+            <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
+              {/* Abstract pattern */}
+              <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 25% 25%, #fff 1px, transparent 1px), radial-gradient(circle at 75% 75%, #fff 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+              <div className="p-6 rounded-2xl bg-white/10 backdrop-blur-sm text-white group-hover:scale-110 transition-transform duration-500">
+                {project.icon}
+              </div>
             </div>
 
-            {/* Content */}
             <div className="p-6 sm:p-8 space-y-4">
               <div className="flex items-start justify-between gap-4">
                 <h3 className="text-xl font-bold text-white group-hover:text-primary transition-colors">
@@ -110,7 +110,6 @@ const Projects = () => {
         ))}
       </div>
 
-      {/* CTA */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
