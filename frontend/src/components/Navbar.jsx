@@ -164,9 +164,6 @@ const Navbar = () => {
                   <div className="flex-grow">
                     <p className="text-lg font-bold tracking-tight" style={{ color: 'var(--text)' }}>{link.name}</p>
                   </div>
-                  <span className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ background: 'var(--input-bg)', color: 'var(--text-faint)' }}>
-                    0{i + 1}
-                  </span>
                 </motion.a>
               ))}
             </div>
