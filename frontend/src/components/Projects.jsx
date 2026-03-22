@@ -4,13 +4,13 @@ import { Github, ArrowUpRight, Code2, Database, Globe, Cpu } from 'lucide-react'
 
 const projects = [
   {
-    title: 'E-Commerce Platform',
-    desc: 'A modern shopping platform with Stripe payments, real-time inventory, and admin dashboard.',
-    tech: ['React', 'Spring Boot', 'MySQL', 'Stripe'],
+    title: 'Meeyazh Naturals',
+    desc: 'A full-featured e-commerce platform for natural and organic products with secure payments and order management.',
+    tech: ['React', 'Spring Boot', 'MySQL', 'Razorpay'],
     icon: <Globe size={28} />,
-    gradient: 'from-blue-500/20 to-cyan-500/10',
+    gradient: 'from-green-500/20 to-emerald-500/10',
     github: '#',
-    live: '#',
+    live: 'https://www.meeyazhnaturals.in/',
   },
   {
     title: 'SaaS Analytics Dashboard',
