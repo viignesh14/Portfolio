@@ -1,89 +1,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Cpu, Globe, Layout, Layers, Shield, Database, Smartphone } from 'lucide-react';
+import { Code2, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
+
+const skills = [
+  { name: 'Frontend', icon: <Palette size={24} />, color: 'text-blue-400', items: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'] },
+  { name: 'Backend', icon: <Server size={24} />, color: 'text-green-400', items: ['Java', 'Spring Boot', 'Node.js', 'REST APIs'] },
+  { name: 'Database', icon: <Database size={24} />, color: 'text-purple-400', items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'] },
+  { name: 'DevOps', icon: <Globe size={24} />, color: 'text-orange-400', items: ['AWS', 'Docker', 'CI/CD', 'Nginx'] },
+  { name: 'Mobile', icon: <Smartphone size={24} />, color: 'text-pink-400', items: ['React Native', 'Flutter', 'PWA'] },
+  { name: 'Tools', icon: <Code2 size={24} />, color: 'text-yellow-400', items: ['Git', 'VS Code', 'Figma', 'Postman'] },
+];
 
 const About = () => {
-    const skills = [
-        { name: 'Frontend', icon: <Layout className="text-blue-400" />, tech: ['React', 'Next.js', 'Tailwind', 'Framer'] },
-        { name: 'Backend', icon: <Code2 className="text-green-400" />, tech: ['Java', 'Spring Boot', 'Node.js', 'Python'] },
-        { name: 'Database', icon: <Database className="text-purple-400" />, tech: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'] },
-        { name: 'Mobile', icon: <Smartphone className="text-pink-400" />, tech: ['React Native', 'Flutter', 'Swift', 'Kotlin'] },
-        { name: 'Cloud', icon: <Globe className="text-indigo-400" />, tech: ['AWS', 'Docker', 'Kubernetes', 'CI/CD'] },
-        { name: 'System', icon: <Cpu className="text-yellow-400" />, tech: ['Architecture', 'Design Patterns', 'Microservices'] },
-    ];
+  return (
+    <section id="about" className="py-32 px-6 max-w-6xl mx-auto">
+      {/* Section Header */}
+      <div className="text-center max-w-2xl mx-auto mb-20">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <span className="section-label">What I Do</span>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mt-2">
+            Skills & <span className="text-gradient">Expertise</span>
+          </h2>
+          <p className="text-slate-500 text-lg mt-6 leading-relaxed">
+            I build robust, scalable apps using modern technologies. 
+            Here's what I bring to the table.
+          </p>
+        </motion.div>
+      </div>
 
-    return (
-        <section id="about" className="section relative">
-            <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20">
-                <motion.span
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                    viewport={{ once: true }}
-                    className="text-primary font-bold tracking-[0.3em] uppercase mb-4"
-                >
-                    Expertise
-                </motion.span>
-                <motion.h2 
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                    viewport={{ once: true }}
-                    className="text-3xl md:text-5xl font-black mb-6"
-                >
-                    Turning concepts into <br className="hidden md:block" />
-                    <span className="text-gradient">digital reality.</span>
-                </motion.h2>
-                <motion.p
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                    viewport={{ once: true }}
-                    className="text-lg text-slate-400 leading-relaxed"
-                >
-                    I specialize in building robust and scalable applications. My approach combines technical excellence with creative problem-solving to deliver products that stand out.
-                </motion.p>
+      {/* Skills Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {skills.map((skill, i) => (
+          <motion.div
+            key={skill.name}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.08 }}
+            viewport={{ once: true }}
+            className="group glass rounded-2xl p-6 hover:bg-white/[0.06] transition-all duration-300 cursor-default"
+          >
+            <div className="flex items-center gap-4 mb-5">
+              <div className={`p-3 rounded-xl bg-white/5 ${skill.color} group-hover:scale-110 transition-transform`}>
+                {skill.icon}
+              </div>
+              <h3 className="text-lg font-bold text-white">{skill.name}</h3>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {skills.map((skill, i) => (
-                    <motion.div
-                        key={skill.name}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                        className="glass-card flex flex-col items-center text-center group"
-                    >
-                        <div className="w-16 h-16 bg-white/5 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-primary/20 transition-all duration-300">
-                            {skill.icon}
-                        </div>
-                        <h3 className="text-xl font-bold mb-4">{skill.name}</h3>
-                        <div className="flex flex-wrap justify-center gap-2 mt-auto">
-                            {skill.tech.map((t) => (
-                                <span key={t} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-semibold text-slate-400 group-hover:text-white transition-colors">
-                                    {t}
-                                </span>
-                            ))}
-                        </div>
-                    </motion.div>
-                ))}
+            <div className="flex flex-wrap gap-2">
+              {skill.items.map((item) => (
+                <span
+                  key={item}
+                  className="px-3 py-1.5 text-xs font-semibold text-slate-400 bg-white/5 rounded-lg border border-white/5 group-hover:text-white group-hover:border-primary/20 transition-all"
+                >
+                  {item}
+                </span>
+              ))}
             </div>
-
-            {/* Tech stack logos marquee effect or static grid */}
-            <div className="mt-32 pt-20 border-t border-white/5">
-                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-8 items-center justify-items-center opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                    {/* Placeholder Icons for popular tech stack */}
-                    <div className="text-center font-black tracking-wider text-xl">REACT</div>
-                    <div className="text-center font-black tracking-wider text-xl">VITE</div>
-                    <div className="text-center font-black tracking-wider text-xl">JAVA</div>
-                    <div className="text-center font-black tracking-wider text-xl">TAILWIND</div>
-                    <div className="text-center font-black tracking-wider text-xl">SPRING</div>
-                    <div className="text-center font-black tracking-wider text-xl">AWS</div>
-                </div>
-            </div>
-        </section>
-    );
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default About;
