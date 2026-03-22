@@ -34,7 +34,7 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
               </span>
-              Available for opportunities
+              Available for internships & projects
             </div>
 
             <div>
@@ -74,9 +74,9 @@ const Hero = () => {
 
             <div className="flex gap-10 pt-8 border-t border-white/5">
               {[
-                { value: '5+', label: 'Years Exp.' },
-                { value: '50+', label: 'Projects' },
-                { value: '100%', label: 'Satisfaction' },
+                { value: '10+', label: 'Projects' },
+                { value: '5+', label: 'Tech Stack' },
+                { value: '100%', label: 'Dedication' },
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-2xl font-extrabold text-white">{stat.value}</div>
