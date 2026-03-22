@@ -20,9 +20,9 @@ const Contact = () => {
   };
 
   const info = [
-    { icon: <Mail size={20} />, label: 'Email', value: 'vignesh@viignesh.in', href: 'mailto:vignesh@viignesh.in' },
-    { icon: <Phone size={20} />, label: 'Phone', value: '+91 98765 43210', href: 'tel:+919876543210' },
-    { icon: <MapPin size={20} />, label: 'Location', value: 'Bangalore, India', href: '#' },
+    { icon: <Mail size={20} />, label: 'Email', value: 'viignesh.14@gmail.com', href: 'mailto:viignesh.14@gmail.com' },
+    { icon: <Phone size={20} />, label: 'Phone', value: '+91 63800 20826', href: 'tel:+916380020826' },
+    { icon: <MapPin size={20} />, label: 'Location', value: 'Coimbatore, India', href: '#' },
   ];
 
   return (

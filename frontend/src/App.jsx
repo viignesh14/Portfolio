@@ -62,7 +62,7 @@ function App() {
               { icon: <Github size={18} />, href: 'https://github.com/viignesh14' },
               { icon: <Linkedin size={18} />, href: 'https://linkedin.com' },
               { icon: <Twitter size={18} />, href: 'https://twitter.com' },
-              { icon: <Mail size={18} />, href: 'mailto:vignesh@viignesh.in' },
+              { icon: <Mail size={18} />, href: 'mailto:viignesh.14@gmail.com' },
             ].map((social, i) => (
               <a
                 key={i}
