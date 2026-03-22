@@ -4,10 +4,10 @@ import { Menu, X, Github, Linkedin, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
 const navLinks = [
-  { name: 'Home', href: '#home' },
-  { name: 'About', href: '#about' },
-  { name: 'Projects', href: '#projects' },
-  { name: 'Contact', href: '#contact' },
+  { name: 'Home', href: '#home', icon: '🏠' },
+  { name: 'About', href: '#about', icon: '👤' },
+  { name: 'Projects', href: '#projects', icon: '🚀' },
+  { name: 'Contact', href: '#contact', icon: '✉️' },
 ];
 
 const Navbar = () => {
@@ -145,20 +145,28 @@ const Navbar = () => {
               <X size={24} />
             </button>
 
-            {/* Nav Links */}
-            <div className="flex flex-col items-center gap-6">
+            {/* Nav Links as styled cards */}
+            <div className="flex flex-col items-stretch gap-4 w-full px-8 max-w-sm">
               {navLinks.map((link, i) => (
                 <motion.a
                   key={link.name}
                   href={link.href}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1, type: 'spring', stiffness: 200 }}
                   onClick={() => setIsOpen(false)}
-                  className="text-4xl font-extrabold tracking-tight transition-colors hover:text-primary"
-                  style={{ color: 'var(--text)' }}
+                  className="flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300 group active:scale-95"
+                  style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}
+                  onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--card-hover)'; e.currentTarget.style.borderColor = 'var(--color-primary)'; }}
+                  onMouseLeave={(e) => { e.currentTarget.style.background = 'var(--card-bg)'; e.currentTarget.style.borderColor = 'var(--border)'; }}
                 >
-                  {link.name}
+                  <span className="text-2xl">{link.icon}</span>
+                  <div className="flex-grow">
+                    <p className="text-lg font-bold tracking-tight" style={{ color: 'var(--text)' }}>{link.name}</p>
+                  </div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-lg" style={{ background: 'var(--input-bg)', color: 'var(--text-faint)' }}>
+                    0{i + 1}
+                  </span>
                 </motion.a>
               ))}
             </div>
