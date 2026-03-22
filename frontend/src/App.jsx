@@ -5,26 +5,12 @@ import About from './components/About';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import { ThemeProvider } from './context/ThemeContext';
-import { motion, useScroll, useSpring } from 'framer-motion';
 import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
 
 function App() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
     <ThemeProvider>
       <div className="relative min-h-screen transition-colors duration-300" style={{ backgroundColor: 'var(--bg)', color: 'var(--text)' }}>
-        {/* Scroll Progress */}
-        <motion.div
-          className="fixed top-0 left-0 right-0 h-[3px] bg-primary z-[60] origin-left"
-          style={{ scaleX }}
-        />
-
         <Navbar />
 
         <main>
