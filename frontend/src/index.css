@@ -11,6 +11,12 @@
   --text-color: #f8fafc;
 }
 
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
@@ -18,7 +24,6 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 @layer base {
@@ -72,13 +77,13 @@ body {
   background: #475569;
 }
 
-/* Background Effects */
-.bg-blob {
-  position: fixed;
-  width: 600px;
-  height: 600px;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
-  filter: blur(80px);
-  z-index: -1;
-  pointer-events: none;
+@layer utilities {
+  .animate-spin-slow {
+    animation: spin 12s linear infinite;
+  }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
