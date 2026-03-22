@@ -97,19 +97,28 @@ const Navbar = () => {
           </div>
 
           {/* Mobile: Theme Toggle + Menu */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex md:hidden items-center gap-3">
+            {/* Pill Toggle Switch */}
             <button
               onClick={toggle}
-              className="p-2 rounded-lg transition-all"
-              style={{ color: 'var(--text-muted)' }}
+              className="relative w-16 h-8 rounded-full p-1 transition-all duration-300 cursor-pointer"
+              style={{ background: isDark ? 'var(--card-hover)' : 'rgba(99, 102, 241, 0.15)', border: '1px solid var(--border)' }}
               aria-label="Toggle theme"
             >
-              {isDark ? <Sun size={20} /> : <Moon size={20} />}
+              <motion.div
+                className="w-6 h-6 rounded-full flex items-center justify-center shadow-md"
+                animate={{ x: isDark ? 0 : 32 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                style={{ background: isDark ? '#334155' : 'var(--color-primary)' }}
+              >
+                {isDark ? <Moon size={12} className="text-blue-300" /> : <Sun size={12} className="text-yellow-200" />}
+              </motion.div>
             </button>
+
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2"
-              style={{ color: 'var(--text-muted)' }}
+              className="p-2 rounded-xl transition-all"
+              style={{ color: 'var(--text-muted)', background: isOpen ? 'var(--card-hover)' : 'transparent' }}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -124,27 +133,70 @@ const Navbar = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-8 md:hidden"
-            style={{ backgroundColor: `rgba(var(--bg-rgb), 0.95)` }}
+            className="fixed inset-0 backdrop-blur-2xl z-40 flex flex-col items-center justify-center md:hidden"
+            style={{ backgroundColor: `rgba(var(--bg-rgb), 0.97)` }}
           >
-            {navLinks.map((link, i) => (
-              <motion.a
-                key={link.name}
-                href={link.href}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                onClick={() => setIsOpen(false)}
-                className="text-4xl font-extrabold transition-colors hover:text-primary"
-                style={{ color: 'var(--text-muted)' }}
-              >
-                {link.name}
-              </motion.a>
-            ))}
-            <div className="flex gap-6 mt-6">
-              <a href="https://github.com/viignesh14" target="_blank" style={{ color: 'var(--text-faint)' }}><Github /></a>
-              <a href="https://linkedin.com" target="_blank" style={{ color: 'var(--text-faint)' }}><Linkedin /></a>
+            {/* Close button at top */}
+            <button
+              onClick={() => setIsOpen(false)}
+              className="absolute top-6 right-6 p-3 rounded-xl transition-all"
+              style={{ color: 'var(--text-muted)', background: 'var(--card-hover)' }}
+            >
+              <X size={24} />
+            </button>
+
+            {/* Nav Links */}
+            <div className="flex flex-col items-center gap-6">
+              {navLinks.map((link, i) => (
+                <motion.a
+                  key={link.name}
+                  href={link.href}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1, type: 'spring', stiffness: 200 }}
+                  onClick={() => setIsOpen(false)}
+                  className="text-4xl font-extrabold tracking-tight transition-colors hover:text-primary"
+                  style={{ color: 'var(--text)' }}
+                >
+                  {link.name}
+                </motion.a>
+              ))}
             </div>
+
+            {/* Bottom section */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="absolute bottom-12 flex flex-col items-center gap-6"
+            >
+              {/* Theme toggle in menu too */}
+              <div className="flex items-center gap-3 px-5 py-3 rounded-2xl" style={{ background: 'var(--card-bg)', border: '1px solid var(--border)' }}>
+                <Sun size={16} style={{ color: isDark ? 'var(--text-faint)' : 'var(--color-primary)' }} />
+                <button
+                  onClick={toggle}
+                  className="relative w-12 h-6 rounded-full p-0.5 transition-all duration-300 cursor-pointer"
+                  style={{ background: isDark ? '#334155' : 'var(--color-primary)' }}
+                >
+                  <motion.div
+                    className="w-5 h-5 rounded-full bg-white shadow-sm"
+                    animate={{ x: isDark ? 0 : 24 }}
+                    transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+                  />
+                </button>
+                <Moon size={16} style={{ color: isDark ? 'var(--color-primary)' : 'var(--text-faint)' }} />
+              </div>
+
+              {/* Social Icons */}
+              <div className="flex gap-5">
+                <a href="https://github.com/viignesh14" target="_blank" className="p-3 rounded-xl transition-all hover:text-primary" style={{ color: 'var(--text-faint)', background: 'var(--card-bg)', border: '1px solid var(--border)' }}>
+                  <Github size={20} />
+                </a>
+                <a href="https://linkedin.com" target="_blank" className="p-3 rounded-xl transition-all hover:text-primary" style={{ color: 'var(--text-faint)', background: 'var(--card-bg)', border: '1px solid var(--border)' }}>
+                  <Linkedin size={20} />
+                </a>
+              </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
