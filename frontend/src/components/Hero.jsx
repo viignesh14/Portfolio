@@ -73,18 +73,7 @@ const Hero = () => {
               </a>
             </div>
 
-            <div className="flex gap-10 pt-8" style={{ borderTop: '1px solid var(--border)' }}>
-              {[
-                { value: '10+', label: 'Projects' },
-                { value: '5+', label: 'Tech Stack' },
-                { value: '100%', label: 'Dedication' },
-              ].map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="text-2xl font-extrabold" style={{ color: 'var(--text)' }}>{stat.value}</div>
-                  <div className="text-xs font-semibold uppercase tracking-wider mt-1" style={{ color: 'var(--text-faint)' }}>{stat.label}</div>
-                </div>
-              ))}
-            </div>
+
           </motion.div>
 
           {/* Right - Code Terminal */}

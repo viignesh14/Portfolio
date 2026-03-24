@@ -1,13 +1,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Code2, Database, Globe, Smartphone, Server, Palette } from 'lucide-react';
+import { Code2, Database, Server, Palette } from 'lucide-react';
 
 const skills = [
   { name: 'Frontend', icon: <Palette size={24} />, color: 'text-blue-400', items: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'] },
-  { name: 'Backend', icon: <Server size={24} />, color: 'text-green-400', items: ['Java', 'Spring Boot', 'Node.js', 'REST APIs'] },
-  { name: 'Database', icon: <Database size={24} />, color: 'text-purple-400', items: ['MySQL', 'PostgreSQL', 'MongoDB', 'Redis'] },
-  { name: 'DevOps', icon: <Globe size={24} />, color: 'text-orange-400', items: ['AWS', 'Docker', 'CI/CD', 'Nginx'] },
-  { name: 'Mobile', icon: <Smartphone size={24} />, color: 'text-pink-400', items: ['React Native', 'Flutter', 'PWA'] },
+  { name: 'Backend', icon: <Server size={24} />, color: 'text-green-400', items: ['Java', 'Spring Boot', 'REST APIs'] },
+  { name: 'Database', icon: <Database size={24} />, color: 'text-purple-400', items: ['MySQL', 'MongoDB'] },
+
   { name: 'Tools', icon: <Code2 size={24} />, color: 'text-yellow-400', items: ['Git', 'VS Code', 'Figma', 'Postman'] },
 ];
 
