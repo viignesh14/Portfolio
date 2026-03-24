@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Code2, Database, Server, Palette } from 'lucide-react';
 
 const skills = [
-  { name: 'Frontend', icon: <Palette size={24} />, color: 'text-blue-400', items: ['React', 'Next.js', 'Tailwind CSS', 'Framer Motion'] },
+  { name: 'Frontend', icon: <Palette size={24} />, color: 'text-blue-400', items: ['React', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Tailwind CSS'] },
   { name: 'Backend', icon: <Server size={24} />, color: 'text-green-400', items: ['Java', 'Spring Boot', 'REST APIs'] },
   { name: 'Database', icon: <Database size={24} />, color: 'text-purple-400', items: ['MySQL', 'MongoDB'] },
 
