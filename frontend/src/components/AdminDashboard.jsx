@@ -68,10 +68,9 @@ const AdminDashboard = () => {
                                 {portfolioData.sections.find(s => s.id === 'hero').enabled ? 'Enabled' : 'Disabled'}
                             </button>
                         </div>
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            <InputField label="Title (e.g., Hi, I'm Vignesh)" value={localData.hero.title} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, title: val}})} className="md:col-span-2" />
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <InputField label="Title (e.g., Hi, I'm Vignesh)" value={localData.hero.title} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, title: val}})} />
                             <InputField label="Tagline" value={localData.hero.tagline} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, tagline: val}})} />
-                            <InputField label="Availability Status" value={localData.hero.availability} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, availability: val}})} />
                         </div>
                         <TextAreaField label="Subtitle" value={localData.hero.subtitle} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, subtitle: val}})} />
                         
