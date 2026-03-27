@@ -1,16 +1,19 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Code2, Database, Server, Palette } from 'lucide-react';
+import { usePortfolio } from '../context/PortfolioContext';
 
-const skills = [
-  { name: 'Frontend', icon: <Palette size={24} />, color: 'text-blue-400', items: ['React', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Tailwind CSS'] },
-  { name: 'Backend', icon: <Server size={24} />, color: 'text-green-400', items: ['Java', 'Spring Boot', 'REST APIs'] },
-  { name: 'Database', icon: <Database size={24} />, color: 'text-purple-400', items: ['MySQL', 'MongoDB'] },
-
-  { name: 'Tools', icon: <Code2 size={24} />, color: 'text-yellow-400', items: ['Git', 'VS Code', 'Figma', 'Postman'] },
-];
+const iconMap = {
+  'Frontend': <Palette size={24} />,
+  'Backend': <Server size={24} />,
+  'Database': <Database size={24} />,
+  'Tools': <Code2 size={24} />
+};
 
 const About = () => {
+  const { portfolioData } = usePortfolio();
+  const { title, description, skills } = portfolioData.about;
+
   return (
     <section id="about" className="py-32 px-6 max-w-6xl mx-auto">
       <div className="text-center max-w-2xl mx-auto mb-20">
@@ -19,13 +22,11 @@ const About = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="section-label">What I Do</span>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight mt-2" style={{ color: 'var(--text)' }}>
-            Skills & <span className="text-gradient">Expertise</span>
+            {title}
           </h2>
           <p className="text-lg mt-6 leading-relaxed" style={{ color: 'var(--text-faint)' }}>
-            I build robust, scalable apps using modern technologies. 
-            Here's what I bring to the table.
+            {description}
           </p>
         </motion.div>
       </div>
@@ -44,8 +45,8 @@ const About = () => {
             onMouseLeave={(e) => e.currentTarget.style.background = 'var(--card-bg)'}
           >
             <div className="flex items-center gap-4 mb-5">
-              <div className={`p-3 rounded-xl ${skill.color} group-hover:scale-110 transition-transform`} style={{ background: 'var(--input-bg)' }}>
-                {skill.icon}
+              <div className={`p-3 rounded-xl ${skill.color || 'text-primary'} group-hover:scale-110 transition-transform`} style={{ background: 'var(--input-bg)' }}>
+                {iconMap[skill.name] || <Code2 size={24} />}
               </div>
               <h3 className="text-lg font-bold" style={{ color: 'var(--text)' }}>{skill.name}</h3>
             </div>

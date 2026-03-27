@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal, Braces } from 'lucide-react';
+import { usePortfolio } from '../context/PortfolioContext';
 
 const Hero = () => {
-  const titles = ['Full Stack Developer', 'Java & Spring Boot', 'React & Vite', 'Cloud Enthusiast'];
+  const { portfolioData } = usePortfolio();
+  const { title, subtitle, tagline } = portfolioData.hero;
+  const titles = [tagline, 'Java & Spring Boot', 'React & Vite', 'Cloud Enthusiast'];
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -39,28 +42,28 @@ const Hero = () => {
 
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ color: 'var(--text)' }}>
-                Hey, I'm{' '}
+                {title.split('Vignesh')[0]}
                 <span className="text-gradient">Vignesh</span>
+                {title.split('Vignesh')[1]}
               </h1>
               <div className="mt-4 h-10 overflow-hidden relative">
-                {titles.map((title, i) => (
+                {titles.map((t, i) => (
                   <motion.p
-                    key={title}
+                    key={i}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: index === i ? 1 : 0, y: index === i ? 0 : -20 }}
                     transition={{ duration: 0.4 }}
                     className={`text-xl sm:text-2xl font-semibold absolute ${index !== i ? 'pointer-events-none' : ''}`}
                     style={{ color: 'var(--text-muted)' }}
                   >
-                    {title}
+                    {t}
                   </motion.p>
                 ))}
               </div>
             </div>
 
             <p className="text-lg leading-relaxed max-w-lg" style={{ color: 'var(--text-faint)' }}>
-              I craft performant, accessible, and beautifully designed web applications. 
-              Passionate about clean code, great UX, and turning ideas into reality.
+              {subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">

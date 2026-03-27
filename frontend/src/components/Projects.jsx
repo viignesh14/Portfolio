@@ -1,48 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Github, ArrowUpRight, Code2, Database, Globe, Cpu } from 'lucide-react';
+import { Github, ArrowUpRight, Globe, Code2, Database, Cpu } from 'lucide-react';
+import { usePortfolio } from '../context/PortfolioContext';
 
-const projects = [
-  {
-    title: 'Meeyazh Naturals',
-    desc: 'A full-featured e-commerce platform for natural and organic products with secure payments, product filtering, and order management.',
-    tech: ['React', 'Spring Boot', 'MySQL', 'Razorpay'],
-    icon: <Globe size={28} />,
-    gradient: 'from-green-500/20 to-emerald-500/10',
-    github: '#',
-    live: 'https://www.meeyazhnaturals.in/',
-    preview: true,
-  },
-  {
-    title: 'SaaS Analytics Dashboard',
-    desc: 'Real-time data visualization with interactive charts, user tracking, and report generation.',
-    tech: ['Next.js', 'PostgreSQL', 'Chart.js', 'Tailwind'],
-    icon: <Cpu size={28} />,
-    gradient: 'from-purple-500/20 to-pink-500/10',
-    github: '#',
-    live: '#',
-  },
-  {
-    title: 'AI Chat Application',
-    desc: 'Real-time chat app with integrated AI assistant, powered by OpenAI API and WebSockets.',
-    tech: ['React', 'Node.js', 'Socket.io', 'OpenAI'],
-    icon: <Code2 size={28} />,
-    gradient: 'from-blue-500/20 to-cyan-500/10',
-    github: '#',
-    live: '#',
-  },
-  {
-    title: 'Travel Booking System',
-    desc: 'Full-featured travel booking with flight search, hotel management, and payment processing.',
-    tech: ['React', 'Spring Boot', 'PostgreSQL', 'AWS'],
-    icon: <Database size={28} />,
-    gradient: 'from-orange-500/20 to-yellow-500/10',
-    github: '#',
-    live: '#',
-  },
-];
+const iconMap = {
+  'Meeyazh Naturals': <Globe size={28} />,
+  'default': <Code2 size={28} />
+};
 
 const Projects = () => {
+  const { portfolioData } = usePortfolio();
+  const { projects } = portfolioData;
+
   return (
     <section id="projects" className="py-32 px-6 max-w-6xl mx-auto">
       <div className="text-center max-w-2xl mx-auto mb-20">
@@ -64,7 +33,7 @@ const Projects = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {projects.map((project, i) => (
           <motion.div
-            key={project.title}
+            key={project.title + i}
             initial={{ opacity: 0, y: 25 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.1 }}
@@ -89,10 +58,10 @@ const Projects = () => {
                 </div>
               </a>
             ) : (
-              <div className={`h-48 bg-gradient-to-br ${project.gradient} flex items-center justify-center relative overflow-hidden`}>
+              <div className={`h-48 bg-gradient-to-br ${project.gradient || 'from-blue-500/20 to-cyan-500/10'} flex items-center justify-center relative overflow-hidden`}>
                 <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 25% 25%, currentColor 1px, transparent 1px), radial-gradient(circle at 75% 75%, currentColor 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
                 <div className="p-6 rounded-2xl backdrop-blur-sm group-hover:scale-110 transition-transform duration-500" style={{ background: 'var(--card-hover)', color: 'var(--text)' }}>
-                  {project.icon}
+                  {iconMap[project.title] || iconMap.default}
                 </div>
               </div>
             )}
