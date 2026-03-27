@@ -22,7 +22,7 @@ import {
 } from 'lucide-react';
 
 const AdminDashboard = () => {
-    const { portfolioData, updateSection, toggleSection } = usePortfolio();
+    const { portfolioData, updateSection, toggleSection, saveAll } = usePortfolio();
     const [activeTab, setActiveTab] = useState('hero');
     const [localData, setLocalData] = useState({ ...portfolioData });
     const [saved, setSaved] = useState(false);
@@ -38,10 +38,8 @@ const AdminDashboard = () => {
         setLocalData({ ...portfolioData });
     }, [portfolioData]);
 
-    const handleSave = () => {
-        Object.keys(localData).forEach(key => {
-            updateSection(key, localData[key]);
-        });
+    const handleSave = async () => {
+        await saveAll(localData);
         setSaved(true);
         setTimeout(() => setSaved(false), 2000);
     };

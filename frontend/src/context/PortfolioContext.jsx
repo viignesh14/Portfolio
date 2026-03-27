@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../supabase';
 
 const PortfolioContext = createContext();
 
@@ -43,47 +44,86 @@ const defaultData = {
 };
 
 export const PortfolioProvider = ({ children }) => {
-  const [portfolioData, setPortfolioData] = useState(() => {
-    const saved = localStorage.getItem('portfolioData');
-    if (!saved) return defaultData;
-    
-    try {
-      const parsed = JSON.parse(saved);
-      // Robust merge: keep saved values but ensure all default keys exist
-      return {
-        ...defaultData,
-        ...parsed,
-        hero: { ...defaultData.hero, ...(parsed.hero || {}) },
-        about: { ...defaultData.about, ...(parsed.about || {}) },
-        sections: parsed.sections || defaultData.sections,
-        projects: parsed.projects || defaultData.projects
-      };
-    } catch (e) {
-      console.error("Error parsing portfolioData", e);
-      return defaultData;
-    }
-  });
+  const [portfolioData, setPortfolioData] = useState(defaultData);
+  const [loading, setLoading] = useState(true);
 
+  // Load from Supabase on mount
   useEffect(() => {
-    localStorage.setItem('portfolioData', JSON.stringify(portfolioData));
-  }, [portfolioData]);
+    const fetchPortfolio = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('portfolio')
+          .select('data')
+          .eq('id', 1)
+          .single();
+
+        if (data && !error) {
+          // Robust merge to ensure any new source code fields exist
+          setPortfolioData(prev => ({
+            ...defaultData,
+            ...data.data,
+            hero: { ...defaultData.hero, ...(data.data.hero || {}) },
+            about: { ...defaultData.about, ...(data.data.about || {}) }
+          }));
+        } else if (error && (error.code === 'PGRST116' || error.message.includes('not found'))) {
+          // Initialize table if entry missing
+          await supabase.from('portfolio').insert({ id: 1, data: defaultData });
+        }
+      } catch (err) {
+        console.error("Supabase Error:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPortfolio();
+  }, []);
+
+  // Sync to Supabase when data changes
+  const syncToSupabase = async (newData) => {
+    try {
+      await supabase
+        .from('portfolio')
+        .upsert({ id: 1, data: newData });
+    } catch (err) {
+      console.error("Sync Error:", err);
+    }
+  };
 
   const updateSection = (section, data) => {
-    setPortfolioData(prev => ({
-      ...prev,
-      [section]: data
-    }));
+    setPortfolioData(prev => {
+      const updated = { ...prev, [section]: data };
+      syncToSupabase(updated);
+      return updated;
+    });
   };
 
   const toggleSection = (id) => {
-    setPortfolioData(prev => ({
-      ...prev,
-      sections: prev.sections.map(s => s.id === id ? { ...s, enabled: !s.enabled } : s)
-    }));
+    setPortfolioData(prev => {
+      const updated = {
+        ...prev,
+        sections: prev.sections.map(s => s.id === id ? { ...s, enabled: !s.enabled } : s)
+      };
+      syncToSupabase(updated);
+      return updated;
+    });
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0a0a0f] flex items-center justify-center">
+        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
+  }
+
+  const saveAll = async (newData) => {
+    setPortfolioData(newData);
+    await syncToSupabase(newData);
   };
 
   return (
-    <PortfolioContext.Provider value={{ portfolioData, updateSection, toggleSection }}>
+    <PortfolioContext.Provider value={{ portfolioData, updateSection, toggleSection, saveAll }}>
       {children}
     </PortfolioContext.Provider>
   );
