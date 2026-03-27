@@ -35,8 +35,7 @@ const Hero = () => {
 
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ color: 'var(--text)' }}>
-                {portfolioData.hero.title}{' '}
-                <span className="text-gradient">{portfolioData.hero.name}</span>
+                {portfolioData.hero.title}
               </h1>
               <p className="mt-4 text-xl sm:text-2xl font-semibold" style={{ color: 'var(--text-muted)' }}>
                 {portfolioData.hero.tagline}
