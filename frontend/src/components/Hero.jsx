@@ -6,13 +6,6 @@ import { usePortfolio } from '../context/PortfolioContext';
 const Hero = () => {
   const { portfolioData } = usePortfolio();
   const { title, subtitle, tagline } = portfolioData.hero;
-  const titles = [tagline, 'Java & Spring Boot', 'React & Vite', 'Cloud Enthusiast'];
-  const [index, setIndex] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => setIndex((p) => (p + 1) % titles.length), 3000);
-    return () => clearInterval(timer);
-  }, []);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
@@ -46,20 +39,9 @@ const Hero = () => {
                 <span className="text-gradient">Vignesh</span>
                 {title.split('Vignesh')[1]}
               </h1>
-              <div className="mt-4 h-10 overflow-hidden relative">
-                {titles.map((t, i) => (
-                  <motion.p
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: index === i ? 1 : 0, y: index === i ? 0 : -20 }}
-                    transition={{ duration: 0.4 }}
-                    className={`text-xl sm:text-2xl font-semibold absolute ${index !== i ? 'pointer-events-none' : ''}`}
-                    style={{ color: 'var(--text-muted)' }}
-                  >
-                    {t}
-                  </motion.p>
-                ))}
-              </div>
+              <p className="mt-4 text-xl sm:text-2xl font-semibold" style={{ color: 'var(--text-muted)' }}>
+                {tagline}
+              </p>
             </div>
 
             <p className="text-lg leading-relaxed max-w-lg" style={{ color: 'var(--text-faint)' }}>
