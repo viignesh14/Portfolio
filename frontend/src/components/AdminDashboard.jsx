@@ -63,10 +63,25 @@ const AdminDashboard = () => {
                             </button>
                         </div>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <InputField label="Title" value={localData.hero.title} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, title: val}})} />
+                            <InputField label="Title (e.g., Hi, I'm)" value={localData.hero.title} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, title: val}})} />
+                            <InputField label="Name" value={localData.hero.name} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, name: val}})} />
                             <InputField label="Tagline" value={localData.hero.tagline} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, tagline: val}})} />
+                            <InputField label="Availability Status" value={localData.hero.availability} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, availability: val}})} />
                         </div>
                         <TextAreaField label="Subtitle" value={localData.hero.subtitle} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, subtitle: val}})} />
+                        
+                        <div className="pt-6 border-t border-[var(--border)]">
+                            <h4 className="font-bold mb-4">Terminal Content (Laptop View)</h4>
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <InputField label="Terminal Role" value={localData.hero.terminalRole} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, terminalRole: val}})} />
+                                <InputField label="Terminal Passion" value={localData.hero.terminalPassion} onChange={(val) => setLocalData({...localData, hero: {...localData.hero, terminalPassion: val}})} />
+                                <InputField 
+                                    label="Terminal Stack (comma separated)" 
+                                    value={localData.hero.terminalStack.join(', ')} 
+                                    onChange={(val) => setLocalData({...localData, hero: {...localData.hero, terminalStack: val.split(',').map(s => s.trim())}})} 
+                                />
+                            </div>
+                        </div>
                     </div>
                 );
             case 'about':

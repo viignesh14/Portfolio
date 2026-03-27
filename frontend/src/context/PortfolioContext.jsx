@@ -4,9 +4,14 @@ const PortfolioContext = createContext();
 
 const defaultData = {
   hero: {
-    title: "Hi, I'm Vignesh.",
+    title: "Hi, I'm",
+    name: "Vignesh",
     subtitle: "A software engineer who builds things that live on the internet. I'm passionate about building scalable, production-ready applications.",
     tagline: "FULL STACK DEVELOPER",
+    availability: "Available for internships & projects",
+    terminalRole: "Full Stack Dev",
+    terminalStack: ["React", "Spring Boot"],
+    terminalPassion: "Building cool stuff",
   },
   about: {
     title: "Skills",

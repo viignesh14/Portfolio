@@ -30,22 +30,21 @@ const Hero = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-400" />
               </span>
-              Available for internships & projects
+              {portfolioData.hero.availability}
             </div>
 
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ color: 'var(--text)' }}>
-                {title.split('Vignesh')[0]}
-                <span className="text-gradient">Vignesh</span>
-                {title.split('Vignesh')[1]}
+                {portfolioData.hero.title}{' '}
+                <span className="text-gradient">{portfolioData.hero.name}</span>
               </h1>
               <p className="mt-4 text-xl sm:text-2xl font-semibold" style={{ color: 'var(--text-muted)' }}>
-                {tagline}
+                {portfolioData.hero.tagline}
               </p>
             </div>
 
             <p className="text-lg leading-relaxed max-w-lg" style={{ color: 'var(--text-faint)' }}>
-              {subtitle}
+              {portfolioData.hero.subtitle}
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 pt-2">
@@ -57,8 +56,6 @@ const Hero = () => {
                 Get In Touch
               </a>
             </div>
-
-
           </motion.div>
 
           {/* Right - Code Terminal */}
@@ -75,15 +72,15 @@ const Hero = () => {
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  <span className="ml-3 text-xs font-mono" style={{ color: 'var(--text-faint)' }}>vignesh@portfolio ~</span>
+                  <span className="ml-3 text-xs font-mono" style={{ color: 'var(--text-faint)' }}>{portfolioData.hero.name.toLowerCase()}@portfolio ~</span>
                 </div>
                 <div className="p-6 font-mono text-sm leading-relaxed" style={{ color: 'var(--text-faint)' }}>
                   <p>// about me</p>
                   <p><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = {'{'}</p>
-                  <p className="pl-4"><span className="text-green-400">name</span>: <span className="text-orange-300">"Vignesh"</span>,</p>
-                  <p className="pl-4"><span className="text-green-400">role</span>: <span className="text-orange-300">"Full Stack Dev"</span>,</p>
-                  <p className="pl-4"><span className="text-green-400">stack</span>: [<span className="text-orange-300">"React"</span>, <span className="text-orange-300">"Spring Boot"</span>],</p>
-                  <p className="pl-4"><span className="text-green-400">passion</span>: <span className="text-orange-300">"Building cool stuff"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">name</span>: <span className="text-orange-300">"{portfolioData.hero.name}"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">role</span>: <span className="text-orange-300">"{portfolioData.hero.terminalRole}"</span>,</p>
+                  <p className="pl-4"><span className="text-green-400">stack</span>: [<span className="text-orange-300">"{portfolioData.hero.terminalStack.join('", "')}"</span>],</p>
+                  <p className="pl-4"><span className="text-green-400">passion</span>: <span className="text-orange-300">"{portfolioData.hero.terminalPassion}"</span>,</p>
                   <p className="pl-4"><span className="text-green-400">available</span>: <span className="text-blue-400">true</span>,</p>
                   <p>{'}'}</p>
                   <p className="mt-3" style={{ color: 'var(--text-muted)' }}>▌</p>
@@ -102,7 +99,7 @@ const Hero = () => {
                   <Braces size={18} className="text-accent" />
                   <div>
                     <p className="text-xs font-bold text-primary uppercase tracking-wider">Stack</p>
-                    <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>React + Spring Boot</p>
+                    <p className="text-sm font-semibold" style={{ color: 'var(--text)' }}>{portfolioData.hero.terminalStack.join(' + ')}</p>
                   </div>
                 </div>
               </motion.div>

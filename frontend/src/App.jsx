@@ -54,7 +54,7 @@ const HomePage = () => {
           <div className="flex items-center gap-2 text-sm" style={{ color: 'var(--text-faint)' }}>
             <span>Built with</span>
             <Heart size={14} className="text-red-400 fill-red-400" />
-            <span>by <span className="font-bold" style={{ color: 'var(--text)' }}>Vignesh</span></span>
+            <span>by <span className="font-bold" style={{ color: 'var(--text)' }}>{portfolioData.hero.name}</span></span>
             <span style={{ color: 'var(--border)' }}>• © 2024</span>
           </div>
           <div className="flex items-center gap-4">

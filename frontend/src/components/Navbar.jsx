@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Github, Linkedin, Sun, Moon, Settings } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { usePortfolio } from '../context/PortfolioContext';
 import { Link } from 'react-router-dom';
 
 const navLinks = [
@@ -15,6 +16,7 @@ const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const { isDark, toggle } = useTheme();
+  const { portfolioData } = usePortfolio();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
@@ -42,10 +44,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white font-black text-sm group-hover:rotate-12 transition-transform">
-              V
+              {portfolioData.hero.name.charAt(0)}
             </div>
             <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--text)' }}>
-              Vignesh<span className="text-primary">.</span>
+              {portfolioData.hero.name}<span className="text-primary">.</span>
             </span>
           </Link>
 
