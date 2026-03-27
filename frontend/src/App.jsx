@@ -15,6 +15,7 @@ const HomePage = () => {
   const { portfolioData } = usePortfolio();
   
   const isEnabled = (id) => {
+    if (!portfolioData || !portfolioData.sections || !Array.isArray(portfolioData.sections)) return true;
     const section = portfolioData.sections.find(s => s.id === id);
     return section ? section.enabled : true;
   };

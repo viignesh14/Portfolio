@@ -45,7 +45,23 @@ const defaultData = {
 export const PortfolioProvider = ({ children }) => {
   const [portfolioData, setPortfolioData] = useState(() => {
     const saved = localStorage.getItem('portfolioData');
-    return saved ? JSON.parse(saved) : defaultData;
+    if (!saved) return defaultData;
+    
+    try {
+      const parsed = JSON.parse(saved);
+      // Robust merge: keep saved values but ensure all default keys exist
+      return {
+        ...defaultData,
+        ...parsed,
+        hero: { ...defaultData.hero, ...(parsed.hero || {}) },
+        about: { ...defaultData.about, ...(parsed.about || {}) },
+        sections: parsed.sections || defaultData.sections,
+        projects: parsed.projects || defaultData.projects
+      };
+    } catch (e) {
+      console.error("Error parsing portfolioData", e);
+      return defaultData;
+    }
   });
 
   useEffect(() => {
