@@ -47,7 +47,7 @@ const Navbar = () => {
               {portfolioData.hero.name.charAt(0)}
             </div>
             <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--text)' }}>
-              {portfolioData.hero.name}<span className="text-primary">.</span>
+              {portfolioData.hero.name}
             </span>
           </Link>
 
