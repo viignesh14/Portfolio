@@ -20,18 +20,26 @@ import {
     Monitor,
     Shield
 } from 'lucide-react';
+import { supabase } from '../supabase';
 
 const AdminDashboard = () => {
     const { portfolioData, updateSection, toggleSection, saveAll } = usePortfolio();
     const [activeTab, setActiveTab] = useState('hero');
     const [localData, setLocalData] = useState({ ...portfolioData });
     const [saved, setSaved] = useState(false);
+    const [userEmail, setUserEmail] = useState('');
     const navigate = useNavigate();
 
     useEffect(() => {
-        if (localStorage.getItem('adminAuth') !== 'true') {
-            navigate('/admin');
-        }
+        const checkSession = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                navigate('/admin');
+            } else {
+                setUserEmail(session.user.email);
+            }
+        };
+        checkSession();
     }, [navigate]);
 
     useEffect(() => {
@@ -44,8 +52,8 @@ const AdminDashboard = () => {
         setTimeout(() => setSaved(false), 2000);
     };
 
-    const logout = () => {
-        localStorage.removeItem('adminAuth');
+    const logout = async () => {
+        await supabase.auth.signOut();
         navigate('/admin');
     };
 
@@ -235,7 +243,7 @@ const AdminDashboard = () => {
                             </div>
                             <div className="flex items-center justify-between pt-2">
                                 <span className="text-sm font-medium">Logged in as</span>
-                                <span className="text-sm font-bold text-primary">viignesh.14@gmail.com</span>
+                                <span className="text-sm font-bold text-primary">{userEmail}</span>
                             </div>
                             <button 
                                 onClick={logout}

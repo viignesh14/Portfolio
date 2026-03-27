@@ -2,23 +2,33 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Mail, Lock, User, CheckCircle, XCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { supabase } from '../supabase';
 
 const AdminLogin = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-        const defaultEmail = "viignesh.14@gmail.com";
-        const defaultPassword = "Vicky@2914";
+        setLoading(true);
+        setError('');
 
-        if (email === defaultEmail && password === defaultPassword) {
-            localStorage.setItem('adminAuth', 'true');
-            navigate('/admin/dashboard');
+        const { data, error: authError } = await supabase.auth.signInWithPassword({
+            email,
+            password
+        });
+
+        if (authError) {
+            setError(authError.message);
+            setLoading(false);
         } else {
-            setError('Invalid email or password');
+            // Open dashboard in a new tab
+            window.open('/admin/dashboard', '_blank');
+            // Redirect the current tab back to home so it stays open
+            navigate('/');
         }
     };
 
