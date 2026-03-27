@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Github, Linkedin, Sun, Moon } from 'lucide-react';
+import { Menu, X, Github, Linkedin, Sun, Moon, Settings } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 const navLinks = [
-  { name: 'Home', href: '#home', icon: '🏠' },
-  { name: 'About', href: '#about', icon: '👤' },
-  { name: 'Projects', href: '#projects', icon: '🚀' },
-  { name: 'Contact', href: '#contact', icon: '✉️' },
+  { name: 'Home', href: '/#home', icon: '🏠' },
+  { name: 'About', href: '/#about', icon: '👤' },
+  { name: 'Projects', href: '/#projects', icon: '🚀' },
+  { name: 'Contact', href: '/#contact', icon: '✉️' },
 ];
 
 const Navbar = () => {
@@ -39,14 +40,14 @@ const Navbar = () => {
           }}
         >
           {/* Logo */}
-          <a href="#home" className="flex items-center gap-2 group">
+          <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white font-black text-sm group-hover:rotate-12 transition-transform">
               V
             </div>
             <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--text)' }}>
               Vignesh<span className="text-primary">.</span>
             </span>
-          </a>
+          </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-1">
@@ -69,14 +70,11 @@ const Navbar = () => {
             <a href="https://github.com/viignesh14" target="_blank" className="p-2 transition-colors" style={{ color: 'var(--text-faint)' }}>
               <Github size={18} />
             </a>
-            <a href="https://linkedin.com" target="_blank" className="p-2 transition-colors" style={{ color: 'var(--text-faint)' }}>
-              <Linkedin size={18} />
-            </a>
-
+            
             {/* Theme Toggle */}
             <button
               onClick={toggle}
-              className="p-2.5 rounded-xl transition-all duration-300 cursor-pointer"
+              className="p-2.5 rounded-xl transition-all duration-300 cursor-pointer mx-1"
               style={{ background: 'var(--card-hover)', color: 'var(--text-muted)' }}
               aria-label="Toggle theme"
             >
@@ -91,6 +89,15 @@ const Navbar = () => {
               </motion.div>
             </button>
 
+            {/* Admin Link */}
+            <Link 
+              to="/admin" 
+              className="p-2.5 rounded-xl transition-all duration-300 cursor-pointer bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20"
+              aria-label="Admin Dashboard"
+            >
+              <Settings size={16} />
+            </Link>
+
             <a href="#contact" className="ml-1 btn-primary !py-2.5 !px-5 !text-sm !rounded-xl">
               Hire Me
             </a>
@@ -98,22 +105,13 @@ const Navbar = () => {
 
           {/* Mobile: Theme Toggle + Menu */}
           <div className="flex md:hidden items-center gap-3">
-            {/* Pill Toggle Switch */}
-            <button
-              onClick={toggle}
-              className="relative w-16 h-8 rounded-full p-1 transition-all duration-300 cursor-pointer"
-              style={{ background: isDark ? 'var(--card-hover)' : 'rgba(99, 102, 241, 0.15)', border: '1px solid var(--border)' }}
-              aria-label="Toggle theme"
+            {/* Admin Link Mobile */}
+            <Link 
+              to="/admin" 
+              className="p-2 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--text-muted)]"
             >
-              <motion.div
-                className="w-6 h-6 rounded-full flex items-center justify-center shadow-md"
-                animate={{ x: isDark ? 0 : 32 }}
-                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
-                style={{ background: isDark ? '#334155' : 'var(--color-primary)' }}
-              >
-                {isDark ? <Moon size={12} className="text-blue-300" /> : <Sun size={12} className="text-yellow-200" />}
-              </motion.div>
-            </button>
+                <Settings size={20} />
+            </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -166,6 +164,21 @@ const Navbar = () => {
                   </div>
                 </motion.a>
               ))}
+
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.1, type: 'spring', stiffness: 200 }}
+              >
+                <Link
+                  to="/admin"
+                  onClick={() => setIsOpen(false)}
+                  className="flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300 group active:scale-95 bg-primary text-white shadow-lg shadow-primary/20"
+                >
+                  <Settings size={28} />
+                  <p className="text-lg font-bold tracking-tight">Admin Dashboard</p>
+                </Link>
+              </motion.div>
             </div>
 
             {/* Bottom section */}
