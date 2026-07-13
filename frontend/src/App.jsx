@@ -7,6 +7,7 @@ import Projects from './components/Projects';
 import Contact from './components/Contact';
 import AdminLogin from './components/AdminLogin';
 import AdminDashboard from './components/AdminDashboard';
+import Certificates from './components/Certificates';
 import { ThemeProvider } from './context/ThemeContext';
 import { PortfolioProvider, usePortfolio } from './context/PortfolioContext';
 import { Github, Linkedin, Twitter, Mail, Heart } from 'lucide-react';
@@ -89,6 +90,7 @@ function App() {
         <Router>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/certificates" element={<Certificates />} />
             <Route path="/admin" element={<AdminLogin />} />
             <Route path="/admin/dashboard" element={<AdminDashboard />} />
           </Routes>

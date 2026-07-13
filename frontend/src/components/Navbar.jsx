@@ -9,6 +9,7 @@ const navLinks = [
   { name: 'Home', href: '/#home', icon: '🏠' },
   { name: 'About', href: '/#about', icon: '👤' },
   { name: 'Projects', href: '/#projects', icon: '🚀' },
+  { name: 'Certificates', href: '/certificates', icon: '🏆' },
   { name: 'Contact', href: '/#contact', icon: '✉️' },
 ];
 
@@ -94,15 +95,6 @@ const Navbar = () => {
               </motion.div>
             </button>
 
-            {/* Admin Link */}
-            <Link 
-              to="/admin" 
-              className="p-2.5 rounded-xl transition-all duration-300 cursor-pointer bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20"
-              aria-label="Admin Dashboard"
-            >
-              <Settings size={16} />
-            </Link>
-
             <a href="#contact" className="ml-1 btn-primary !py-2.5 !px-5 !text-sm !rounded-xl">
               Hire Me
             </a>
@@ -110,13 +102,6 @@ const Navbar = () => {
 
           {/* Mobile: Theme Toggle + Menu */}
           <div className="flex md:hidden items-center gap-3">
-            {/* Admin Link Mobile */}
-            <Link 
-              to="/admin" 
-              className="p-2 rounded-xl border border-[var(--border)] bg-[var(--card-bg)] text-[var(--text-muted)]"
-            >
-                <Settings size={20} />
-            </Link>
 
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -170,20 +155,6 @@ const Navbar = () => {
                 </motion.a>
               ))}
 
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.1, type: 'spring', stiffness: 200 }}
-              >
-                <Link
-                  to="/admin"
-                  onClick={() => setIsOpen(false)}
-                  className="flex items-center gap-4 px-6 py-5 rounded-2xl transition-all duration-300 group active:scale-95 bg-primary text-white shadow-lg shadow-primary/20"
-                >
-                  <Settings size={28} />
-                  <p className="text-lg font-bold tracking-tight">Admin Dashboard</p>
-                </Link>
-              </motion.div>
             </div>
 
             {/* Bottom section */}
