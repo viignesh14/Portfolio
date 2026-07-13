@@ -10,6 +10,11 @@ import javaFullstackImg from '../assets/certificates/java_fullstack.jpg';
 import aiProductivityImg from '../assets/certificates/ai_productivity.jpg';
 import aiResponsiblyImg from '../assets/certificates/ai_responsibly.jpg';
 import deepLearningImg from '../assets/certificates/deep_learning.jpg';
+import aiFoundationImg from '../assets/certificates/ai_foundation.jpg';
+import googleAiEssentialsImg from '../assets/certificates/google_ai_essentials.jpg';
+import fullstackAgenticAiImg from '../assets/certificates/fullstack_agentic_ai.jpg';
+import artOfPromptingImg from '../assets/certificates/art_of_prompting.jpg';
+import cryptographyImg from '../assets/certificates/cryptography.jpg';
 
 const certificatesData = [
   {
@@ -23,6 +28,30 @@ const certificatesData = [
     image: javaFullstackImg,
     skills: ['Java', 'Spring Boot', 'SQL', 'React', 'Full Stack'],
     verifyUrl: null
+  },
+  {
+    id: 'google-ai-essentials',
+    title: 'Google AI Essentials Specialization',
+    issuer: 'Google (via Coursera)',
+    date: 'May 16, 2026',
+    category: 'Cloud & AI',
+    description: 'A 5-course specialization covering AI fundamentals, prompt engineering, productivity hacking, and ethical practices.',
+    image: googleAiEssentialsImg,
+    skills: ['AI Essentials', 'Prompt Engineering', 'Generative AI', 'AI Safety'],
+    verifyUrl: 'https://coursera.org/verify/specialization/LF01719KK6F2'
+  },
+  {
+    id: 'fullstack-agentic-ai',
+    title: 'Full Stack Generative and Agentic AI with Python',
+    issuer: 'Udemy',
+    instructor: 'Hitesh Choudhary, Piyush Garg',
+    date: 'May 9, 2026',
+    duration: '32.5 total hours',
+    category: 'Cloud & AI',
+    description: 'Deep dive into building real-world Full Stack applications powered by Generative AI and autonomous AI agents using Python.',
+    image: fullstackAgenticAiImg,
+    skills: ['Agentic AI', 'Python', 'Generative AI', 'LangChain', 'LlamaIndex'],
+    verifyUrl: 'https://www.udemy.com/certificate/UC-a0c36179-4742-4020-beec-ff3a7e76a8f9/'
   },
   {
     id: 'react-native',
@@ -60,6 +89,28 @@ const certificatesData = [
     verifyUrl: 'https://coursera.org/verify/5D2LNHO7JXH7'
   },
   {
+    id: 'art-of-prompting',
+    title: 'Discover the Art of Prompting',
+    issuer: 'Google (via Coursera)',
+    date: 'May 16, 2026',
+    category: 'Cloud & AI',
+    description: 'Authorized course by Google focusing on drafting highly effective prompts for Large Language Models.',
+    image: artOfPromptingImg,
+    skills: ['Prompt Engineering', 'Generative AI', 'Large Language Models'],
+    verifyUrl: 'https://coursera.org/verify/RJPP766899XA'
+  },
+  {
+    id: 'ai-foundation',
+    title: 'Artificial Intelligence Foundation Certification',
+    issuer: 'Infosys Springboard',
+    date: 'September 10, 2025',
+    category: 'Cloud & AI',
+    description: 'Comprehensive certification verifying fundamental knowledge of Artificial Intelligence, concepts, history, and applications.',
+    image: aiFoundationImg,
+    skills: ['Artificial Intelligence', 'AI Foundations', 'Machine Learning'],
+    verifyUrl: 'https://verify.onwingspan.com'
+  },
+  {
     id: 'deep-learning',
     title: 'Introduction to Deep Learning',
     issuer: 'Infosys Springboard',
@@ -69,8 +120,20 @@ const certificatesData = [
     image: deepLearningImg,
     skills: ['Deep Learning', 'Neural Networks', 'Artificial Intelligence'],
     verifyUrl: 'https://verify.onwingspan.com'
+  },
+  {
+    id: 'cryptography',
+    title: 'Cryptography in IT Security & Hacking',
+    issuer: 'Infosys Springboard',
+    date: 'February 17, 2026',
+    category: 'Development',
+    description: 'Detailed study of cryptographic protocols, encryption standards, public key infrastructures, and their roles in security audits.',
+    image: cryptographyImg,
+    skills: ['Cryptography', 'IT Security', 'Cybersecurity', 'Encryption'],
+    verifyUrl: 'https://verify.onwingspan.com'
   }
 ];
+
 
 const Certificates = () => {
   const [selectedFilter, setSelectedFilter] = useState('All');
