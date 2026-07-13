@@ -73,7 +73,7 @@ const Hero = () => {
               </div>
 
               {/* Decorative Frame */}
-              <div className="absolute -z-20 top-4 left-4 w-full h-full rounded-full border-2 border-primary/20 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-500" />
+              <div className="absolute inset-0 rounded-full border-2 border-primary/30 scale-[1.04] group-hover:scale-[1.08] transition-transform duration-500 -z-20" />
             </div>
           </motion.div>
         </div>

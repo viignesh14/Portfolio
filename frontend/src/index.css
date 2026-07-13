@@ -2,10 +2,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 @theme {
-  --color-primary: #6366f1;
-  --color-primary-dark: #4f46e5;
-  --color-secondary: #ec4899;
-  --color-accent: #8b5cf6;
+  --color-primary: #8b5cf6;
+  --color-primary-dark: #7c3aed;
+  --color-secondary: #f43f5e;
+  --color-accent: #06b6d4;
 
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
 
@@ -29,18 +29,18 @@
 
 /* ===== DARK MODE (default) ===== */
 :root, .dark {
-  --bg: #0a0a0f;
-  --bg-rgb: 10, 10, 15;
-  --surface: #141420;
-  --surface-light: #1c1c2e;
-  --text: #e2e8f0;
-  --text-muted: #94a3b8;
-  --text-faint: #64748b;
-  --border: rgba(255, 255, 255, 0.06);
-  --card-bg: rgba(255, 255, 255, 0.03);
-  --card-hover: rgba(255, 255, 255, 0.06);
-  --input-bg: rgba(255, 255, 255, 0.05);
-  --shadow: rgba(0, 0, 0, 0.3);
+  --bg: #030014;
+  --bg-rgb: 3, 0, 20;
+  --surface: #0a0720;
+  --surface-light: #120e35;
+  --text: #f8fafc;
+  --text-muted: #cbd5e1;
+  --text-faint: #94a3b8;
+  --border: rgba(139, 92, 246, 0.15);
+  --card-bg: rgba(255, 255, 255, 0.02);
+  --card-hover: rgba(139, 92, 246, 0.06);
+  --input-bg: rgba(255, 255, 255, 0.03);
+  --shadow: rgba(0, 0, 0, 0.5);
 }
 
 /* ===== LIGHT MODE ===== */
@@ -63,6 +63,10 @@
 html { overflow-x: hidden; scroll-behavior: smooth; }
 body {
   background-color: var(--bg);
+  background-image: 
+    radial-gradient(at 0% 0%, rgba(139, 92, 246, 0.08) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.08) 0px, transparent 50%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: var(--font-sans);
   margin: 0;
@@ -70,7 +74,7 @@ body {
   -webkit-font-smoothing: antialiased;
   transition: background-color 0.3s, color 0.3s;
 }
-::selection { background: rgba(99, 102, 241, 0.3); }
+::selection { background: rgba(139, 92, 246, 0.3); }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; }

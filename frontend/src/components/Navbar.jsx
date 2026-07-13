@@ -69,8 +69,11 @@ const Navbar = () => {
 
           {/* Desktop Social + Theme Toggle + CTA */}
           <div className="hidden md:flex items-center gap-2">
-            <a href="https://github.com/viignesh14" target="_blank" className="p-2 transition-colors" style={{ color: 'var(--text-faint)' }}>
+            <a href="https://github.com/viignesh14" target="_blank" className="p-2 transition-colors hover:text-primary" style={{ color: 'var(--text-faint)' }}>
               <Github size={18} />
+            </a>
+            <a href="https://linkedin.com" target="_blank" className="p-2 transition-colors hover:text-primary" style={{ color: 'var(--text-faint)' }}>
+              <Linkedin size={18} />
             </a>
             
             {/* Theme Toggle */}
