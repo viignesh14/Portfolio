@@ -44,10 +44,10 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 group">
             <div className="w-9 h-9 rounded-xl bg-primary flex items-center justify-center text-white font-black text-sm group-hover:rotate-12 transition-transform">
-              {portfolioData.hero.name.charAt(0)}
+              P
             </div>
             <span className="text-xl font-extrabold tracking-tight" style={{ color: 'var(--text)' }}>
-              {portfolioData.hero.name}
+              Portfolio
             </span>
           </Link>
 
