@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Terminal, Braces } from 'lucide-react';
 import { usePortfolio } from '../context/PortfolioContext';
+import profileImg from '../assets/profile.jpg';
+
 
 const Hero = () => {
   const { portfolioData } = usePortfolio();
@@ -28,11 +30,8 @@ const Hero = () => {
 
             <div>
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight" style={{ color: 'var(--text)' }}>
-                {portfolioData.hero.title}
+                Hi, I am <span className="text-gradient">{portfolioData.hero.name}</span>
               </h1>
-              <p className="mt-4 text-xl sm:text-2xl font-semibold" style={{ color: 'var(--text-muted)' }}>
-                {portfolioData.hero.tagline}
-              </p>
             </div>
 
             <p className="text-lg leading-relaxed max-w-lg" style={{ color: 'var(--text-faint)' }}>
@@ -50,43 +49,55 @@ const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right - Code Terminal */}
+          {/* Right - Profile Photo */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="hidden lg:flex justify-center"
+            className="flex justify-center items-center w-full"
           >
-            <div className="relative w-full max-w-md">
-              <div className="glass rounded-2xl overflow-hidden" style={{ boxShadow: '0 25px 50px var(--shadow)' }}>
-                {/* Title Bar */}
-                <div className="flex items-center gap-2 px-5 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
-                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
-                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
-                  <span className="ml-3 text-xs font-mono" style={{ color: 'var(--text-faint)' }}>{portfolioData.hero.name.toLowerCase()}@portfolio ~</span>
-                </div>
-                <div className="p-6 font-mono text-sm leading-relaxed" style={{ color: 'var(--text-faint)' }}>
-                  <p>// about me</p>
-                  <p><span className="text-purple-400">const</span> <span className="text-blue-400">developer</span> = {'{'}</p>
-                  <p className="pl-4"><span className="text-green-400">name</span>: <span className="text-orange-300">"{portfolioData.hero.name}"</span>,</p>
-                  <p className="pl-4"><span className="text-green-400">role</span>: <span className="text-orange-300">"{portfolioData.hero.terminalRole}"</span>,</p>
-                  <p className="pl-4"><span className="text-green-400">stack</span>: [<span className="text-orange-300">"{portfolioData.hero.terminalStack.join('", "')}"</span>],</p>
-                  <p className="pl-4"><span className="text-green-400">passion</span>: <span className="text-orange-300">"{portfolioData.hero.terminalPassion}"</span>,</p>
-                  <p className="pl-4"><span className="text-green-400">available</span>: <span className="text-blue-400">true</span>,</p>
-                  <p>{'}'}</p>
-                  <p className="mt-3" style={{ color: 'var(--text-muted)' }}>▌</p>
-                </div>
+            <div className="relative w-full max-w-sm aspect-[4/5] group">
+              {/* Outer Glow Effect */}
+              <div className="absolute -inset-4 bg-gradient-to-tr from-primary/30 to-accent/30 rounded-3xl blur-2xl opacity-50 -z-10 group-hover:opacity-75 transition-opacity duration-500" />
+              
+              {/* Main Photo Card */}
+              <div 
+                className="relative w-full h-full rounded-2xl overflow-hidden glass p-2.5" 
+                style={{ boxShadow: '0 25px 50px var(--shadow)' }}
+              >
+                <img 
+                  src={profileImg} 
+                  alt={portfolioData.hero.name} 
+                  className="w-full h-full object-cover rounded-xl transition-all duration-500 group-hover:scale-[1.02]"
+                />
+                
+                {/* Dynamic border/overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none rounded-xl" />
               </div>
 
-              <motion.div animate={{ y: [0, -10, 0] }} transition={{ repeat: Infinity, duration: 3 }} className="absolute -top-4 -right-4 glass px-4 py-3 rounded-2xl" style={{ boxShadow: '0 8px 30px var(--shadow)' }}>
+              {/* Decorative Frame */}
+              <div className="absolute -z-20 top-6 left-6 w-full h-full rounded-2xl border-2 border-primary/20 group-hover:translate-x-1 group-hover:translate-y-1 transition-transform duration-500" />
+
+              {/* Floating Badge 1 - Top Right */}
+              <motion.div 
+                animate={{ y: [0, -10, 0] }} 
+                transition={{ repeat: Infinity, duration: 3 }} 
+                className="absolute -top-4 -right-4 glass px-4 py-3 rounded-2xl" 
+                style={{ boxShadow: '0 8px 30px var(--shadow)' }}
+              >
                 <div className="flex items-center gap-2">
                   <Terminal size={16} className="text-primary" />
                   <span className="text-sm font-bold" style={{ color: 'var(--text)' }}>Clean Code</span>
                 </div>
               </motion.div>
 
-              <motion.div animate={{ y: [0, 8, 0] }} transition={{ repeat: Infinity, duration: 4, delay: 1 }} className="absolute -bottom-4 -left-4 glass px-5 py-3 rounded-2xl" style={{ boxShadow: '0 8px 30px var(--shadow)' }}>
+              {/* Floating Badge 2 - Bottom Left */}
+              <motion.div 
+                animate={{ y: [0, 8, 0] }} 
+                transition={{ repeat: Infinity, duration: 4, delay: 1 }} 
+                className="absolute -bottom-4 -left-4 glass px-5 py-3 rounded-2xl" 
+                style={{ boxShadow: '0 8px 30px var(--shadow)' }}
+              >
                 <div className="flex items-center gap-3">
                   <Braces size={18} className="text-accent" />
                   <div>
@@ -95,8 +106,6 @@ const Hero = () => {
                   </div>
                 </div>
               </motion.div>
-
-              <div className="absolute -z-10 top-6 left-6 w-full h-full rounded-2xl border-2 border-primary/20" />
             </div>
           </motion.div>
         </div>

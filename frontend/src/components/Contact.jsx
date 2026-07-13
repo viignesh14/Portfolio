@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Send, MapPin, Mail, Phone } from 'lucide-react';
-import axios from 'axios';
+import { supabase } from '../supabase';
 
 const Contact = () => {
   const [form, setForm] = useState({ name: '', email: '', message: '' });
@@ -11,13 +11,22 @@ const Contact = () => {
     e.preventDefault();
     setStatus('loading');
     try {
-      await axios.post('http://localhost:8080/api/contact', form);
+      const { error } = await supabase.from('contacts').insert([
+        {
+          name: form.name,
+          email: form.email,
+          message: form.message,
+        }
+      ]);
+      if (error) throw error;
       setStatus('success');
       setForm({ name: '', email: '', message: '' });
-    } catch {
+    } catch (err) {
+      console.error('Supabase contact submission error:', err);
       setStatus('error');
     }
   };
+
 
   const info = [
     { icon: <Mail size={20} />, label: 'Email', value: 'viignesh.14@gmail.com', href: 'mailto:viignesh.14@gmail.com' },

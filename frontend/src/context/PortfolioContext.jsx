@@ -5,10 +5,10 @@ const PortfolioContext = createContext();
 
 const defaultData = {
   hero: {
-    title: "Hi, I'm",
+    title: "Hi, I am",
     name: "Vignesh",
-    subtitle: "A software engineer who builds things that live on the internet. I'm passionate about building scalable, production-ready applications.",
-    tagline: "FULL STACK DEVELOPER",
+    subtitle: "Computer Science Engineering student with hands-on experience in Java Full Stack Development, AWS Cloud, Generative AI, MySQL, and MongoDB. Seeking a Software Engineering role to apply strong problem-solving and development skills in building scalable, cloud-based, and intelligent software solutions.",
+    tagline: "",
     availability: "Available for internships & projects",
     terminalRole: "Full Stack Dev",
     terminalStack: ["React", "Spring Boot"],
@@ -16,7 +16,7 @@ const defaultData = {
   },
   about: {
     title: "Skills",
-    description: "I build production-ready, scalable applications with a focus on performance, reliability, and clean architecture.",
+    description: "Computer Science Engineering student with hands-on experience in Java Full Stack Development, AWS Cloud, Generative AI, MySQL, and MongoDB. Seeking a Software Engineering role to apply strong problem-solving and development skills in building scalable, cloud-based, and intelligent software solutions.",
     skills: [
       { name: 'Frontend', color: 'text-blue-400', items: ['React', 'HTML', 'CSS', 'JavaScript', 'Bootstrap', 'Tailwind CSS'] },
       { name: 'Backend', color: 'text-green-400', items: ['Java', 'Spring Boot', 'REST APIs', 'Python'] },
@@ -59,12 +59,33 @@ export const PortfolioProvider = ({ children }) => {
 
         if (data && !error) {
           // Robust merge to ensure any new source code fields exist
-          setPortfolioData(prev => ({
+          const mergedData = {
             ...defaultData,
             ...data.data,
             hero: { ...defaultData.hero, ...(data.data.hero || {}) },
             about: { ...defaultData.about, ...(data.data.about || {}) }
-          }));
+          };
+
+          let needsUpdate = false;
+          if (mergedData.hero.subtitle === "A software engineer who builds things that live on the internet. I'm passionate about building scalable, production-ready applications.") {
+            mergedData.hero.subtitle = defaultData.hero.subtitle;
+            needsUpdate = true;
+          }
+          if (mergedData.about.description === "I build production-ready, scalable applications with a focus on performance, reliability, and clean architecture.") {
+            mergedData.about.description = defaultData.about.description;
+            needsUpdate = true;
+          }
+          if (mergedData.hero.tagline === "FULL STACK DEVELOPER") {
+            mergedData.hero.tagline = defaultData.hero.tagline;
+            needsUpdate = true;
+          }
+
+          setPortfolioData(mergedData);
+          if (needsUpdate) {
+            supabase.from('portfolio').upsert({ id: 1, data: mergedData }).then(({ error }) => {
+              if (error) console.error("Auto-migration Sync Error:", error);
+            });
+          }
         } else if (error && (error.code === 'PGRST116' || error.message.includes('not found'))) {
           // Initialize table if entry missing
           await supabase.from('portfolio').insert({ id: 1, data: defaultData });
